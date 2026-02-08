@@ -1,28 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import { NAV_LINKS, PROFILE } from '../constants';
+import React, { useState, useEffect, useCallback } from 'react';
+import { NAV_LINKS } from '../constants';
 import { Menu, X } from 'lucide-react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
-
+  const [isScrolled, setIsScrolled] = useState(false);
+  
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
+
+    // Check initial scroll position
+    handleScroll();
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  // Close mobile menu on resize to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setIsOpen(false);
     
@@ -30,94 +38,121 @@ const Navbar = () => {
     const element = document.getElementById(targetId);
     
     if (element) {
-      const offset = 80; // Height of the navbar + padding
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
       window.scrollTo({
-        top: offsetPosition,
+        top: element.offsetTop - 120, // Adjusted offset for the fixed navbar
         behavior: 'smooth'
       });
     }
-  };
+  }, []);
+
+  // Navbar becomes active (opaque/3d) if scrolled OR mobile menu is open
+  const isActive = isScrolled || isOpen;
 
   return (
-    <>
-      <nav 
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          scrolled ? 'bg-slate-900/90 backdrop-blur-lg border-b border-slate-800 py-3' : 'bg-transparent py-5'
-        }`}
+    <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+      <motion.nav 
+        initial={{ y: -100, opacity: 0, scale: 0.95 }}
+        animate={{ y: 0, opacity: 1, scale: 1 }}
+        transition={{ type: "spring", stiffness: 200, damping: 20 }}
+        className="pointer-events-auto w-full max-w-4xl relative"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            <div className="flex-shrink-0">
+        <div className={`
+          relative rounded-2xl transition-all duration-500 ease-out overflow-hidden
+          ${isActive 
+            ? 'bg-white/80 dark:bg-zinc-950/80 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] border border-white/40 dark:border-white/10' 
+            : 'bg-transparent border border-transparent shadow-none backdrop-blur-none'
+          }
+        `}>
+          {/* 3D Highlight/Bevel Effects - Only visible when active */}
+          <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent dark:via-white/20 transition-opacity duration-500 ${isActive ? 'opacity-100' : 'opacity-0'}`} />
+          <div className={`absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-black/5 to-transparent dark:via-black/40 transition-opacity duration-500 ${isActive ? 'opacity-50' : 'opacity-0'}`} />
+          
+          <div className="relative z-10 px-6 py-4">
+            <div className="flex items-center justify-between">
+              {/* Logo */}
               <a 
                 href="#" 
                 onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                className="text-xl font-bold text-slate-100 font-mono tracking-tighter"
+                className="text-lg font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2 group"
               >
-                <span className="text-primary-500">&lt;</span>
-                AD
-                <span className="text-primary-500">/&gt;</span>
+                <span className={`flex items-center justify-center w-8 h-8 rounded-lg text-xl transition-all duration-300 ${isActive ? 'bg-primary-500/10' : 'bg-white/20 dark:bg-black/20 backdrop-blur-sm'}`}>🙏</span>
+                <span className={`bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-400 ${!isActive && 'dark:text-white text-slate-900'}`}>
+                  নমস্কার
+                </span>
               </a>
-            </div>
-            
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-8">
+
+              {/* Desktop Menu */}
+              <div className="hidden md:flex items-center gap-1">
                 {NAV_LINKS.map((link) => (
                   <a
                     key={link.name}
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
-                    className="text-slate-300 hover:text-primary-400 hover:bg-slate-800/50 transition-all px-3 py-2 rounded-md text-sm font-medium"
+                    className={`
+                      relative px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300
+                      ${isActive 
+                        ? 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white' 
+                        : 'text-slate-700 dark:text-slate-200 hover:bg-white/10 hover:text-slate-900 dark:hover:text-white'
+                      }
+                      active:scale-95
+                    `}
                   >
                     {link.name}
                   </a>
                 ))}
               </div>
-            </div>
-            
-            <div className="-mr-2 flex md:hidden">
+
+              {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none"
+                className={`
+                  md:hidden p-2 rounded-xl transition-colors
+                  ${isActive 
+                    ? 'bg-slate-100/50 dark:bg-white/5 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-white/10' 
+                    : 'bg-white/20 dark:bg-black/20 backdrop-blur-md text-slate-900 dark:text-white hover:bg-white/30'
+                  }
+                `}
                 aria-label="Toggle menu"
               >
-                {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
             </div>
+
+            {/* Mobile Dropdown */}
+            <AnimatePresence>
+              {isOpen && (
+                <motion.div 
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                  className="md:hidden overflow-hidden"
+                >
+                  <div className="flex flex-col space-y-1 pt-4 pb-2 border-t border-slate-200/50 dark:border-white/5 mt-4">
+                    {NAV_LINKS.map((link) => (
+                      <a
+                        key={link.name}
+                        href={link.href}
+                        onClick={(e) => handleNavClick(e, link.href)}
+                        className="
+                          block px-4 py-3 rounded-xl text-base font-semibold
+                          text-slate-600 dark:text-slate-300
+                          hover:text-slate-900 dark:hover:text-white
+                          hover:bg-slate-50 dark:hover:bg-white/5
+                          transition-colors
+                        "
+                      >
+                        {link.name}
+                      </a>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
-
-        {/* Mobile menu */}
-        <motion.div 
-          initial={false}
-          animate={isOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
-          className={`md:hidden bg-slate-900 border-b border-slate-800 overflow-hidden`}
-        >
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className="text-slate-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
-        </motion.div>
-      </nav>
-      
-      {/* Scroll Progress Bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-primary-500 z-[51] origin-left"
-        style={{ scaleX }}
-      />
-    </>
+      </motion.nav>
+    </div>
   );
 };
 

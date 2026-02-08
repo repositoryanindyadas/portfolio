@@ -15,7 +15,7 @@ import {
 
 export const PROFILE: Profile = {
   name: "Anindya Das",
-  title: "Cloud Infrastructure & M365 Administrator",
+  title: "Learning, Building, Experimenting ..",
   location: "Krishnanagar, West Bengal, India",
   email: "contactanindyadas@gmail.com",
   phone: "+91 7047933601",
@@ -25,27 +25,27 @@ export const PROFILE: Profile = {
 
 export const SKILLS: SkillCategory[] = [
   {
-    title: "Cloud Platforms",
-    skills: ["Microsoft 365", "AWS (Amazon Web Services)", "Entra ID", "Exchange Online"],
-  },
-  {
-    title: "CI/CD & DevOps",
-    skills: ["GitLab", "Docker", "Kubernetes", "Apache", "YAML", "Jenkins", "Sonarqube"],
-  },
-  {
-    title: "Programming & Scripting",
-    skills: ["Python", "Shell Scripting"],
+    title: "Programming & Scripting Languages",
+    skills: ["Python", "Shell"],
   },
   {
     title: "Databases",
     skills: ["PostgreSQL", "ANSI SQL", "Cloud-native Databases"],
   },
   {
-    title: "OS & Networking",
-    skills: ["Linux (RHEL)", "File System Management", "Process Management", "CIDR", "IP Addressing", "Raspberry Pi"],
+    title: "Cloud Platforms",
+    skills: ["Microsoft 365", "AWS", "Entra ID", "Exchange Online"],
   },
   {
-    title: "Web & Basic Development",
+    title: "CI/CD Tools",
+    skills: ["GitLab", "Docker", "Kubernetes", "Apache", "YAML", "Jenkins", "Sonarqube"],
+  },
+  {
+    title: "OS & Networking",
+    skills: ["Linux", "File System", "Process Management", "CIDR", "IP Addressing", "Raspberry Pi"],
+  },
+  {
+    title: "Basic Development",
     skills: ["HTML/CSS/JS", "REST API"],
   },
 ];
@@ -146,9 +146,8 @@ export const ACHIEVEMENTS: Achievement[] = [
 ];
 
 export const NAV_LINKS = [
-  { name: 'About', href: '#about' },
   { name: 'Skills', href: '#skills' },
-  { name: 'Experience', href: '#experience' },
+  { name: 'Voluntary', href: '#experience' },
   { name: 'Projects', href: '#projects' },
   { name: 'Education', href: '#education' },
   { name: 'Achievements', href: '#achievements' },
@@ -157,9 +156,9 @@ export const NAV_LINKS = [
 // Mapping icons for skill categories
 export const SKILL_ICONS: Record<string, any> = {
   "Cloud Platforms": Cloud,
-  "CI/CD & DevOps": Settings,
-  "Programming & Scripting": Terminal,
+  "CI/CD Tools": Settings,
+  "Programming & Scripting Languages": Terminal,
   "Databases": Database,
   "OS & Networking": Server,
-  "Web & Basic Development": Code,
+  "Basic Development": Code,
 };

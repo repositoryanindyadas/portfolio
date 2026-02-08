@@ -14,37 +14,38 @@
         theme: {
           extend: {
             fontFamily: {
-              sans: ['Inter', 'sans-serif'],
+              sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
             },
             colors: {
+              // Apple-inspired System Blues/Indigos
               primary: {
-                50: '#f0f9ff',
-                100: '#e0f2fe',
-                200: '#bae6fd',
-                300: '#7dd3fc',
-                400: '#38bdf8',
-                500: '#0ea5e9',
-                600: '#0284c7',
-                700: '#0369a1',
-                800: '#075985',
-                900: '#0c4a6e',
+                50: '#f2f8fd',
+                100: '#e3f0fa',
+                200: '#bfdef6',
+                300: '#8bc4f0',
+                400: '#52a6e9',
+                500: '#2d89e0', // IOS Blue-ish
+                600: '#1e6bc0',
+                700: '#19569b',
+                800: '#17497d',
+                900: '#173d63',
               },
-              dark: {
-                900: '#0f172a', // slate-900
-                800: '#1e293b', // slate-800
-                700: '#334155', // slate-700
+              // Premium Dark/Light Backgrounds
+              ios: {
+                light: '#F5F5F7', // Apple light gray background
+                dark: '#000000',  // Deep OLED black
+                gray: '#1C1C1E',  // Secondary dark background
+                blue: '#007AFF',
               }
+            },
+            backgroundImage: {
+              'glass-gradient-light': 'linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 100%)',
+              'glass-gradient-dark': 'linear-gradient(135deg, rgba(30, 30, 30, 0.6) 0%, rgba(20, 20, 20, 0.2) 100%)',
             }
           }
         }
       }
     </script>
-    <style>
-      body {
-        background-color: #0f172a;
-        color: #e2e8f0;
-      }
-    </style>
   <script type="importmap">
 {
   "imports": {
@@ -56,6 +57,34 @@
   }
 }
 </script>
+<style>
+  /* Custom scrollbar for webkit */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.5);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(156, 163, 175, 0.8);
+  }
+  
+  /* Glassmorphism utilities */
+  .glass-panel {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  
+  /* Smooth text rendering */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+</style>
 </head>
   <body>
     <div id="root"></div>

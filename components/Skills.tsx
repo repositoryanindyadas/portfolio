@@ -20,12 +20,12 @@ const Skills = () => {
           const Icon = SKILL_ICONS[category.title] || Code;
           
           return (
-            <Card key={index} variants={fadeInUp} className="flex flex-col h-full">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-primary-500/10 rounded-lg">
-                  <Icon className="w-6 h-6 text-primary-400" />
+            <Card key={index} variants={fadeInUp} className="flex flex-col h-full hover:border-primary-500/30 transition-colors">
+              <div className="flex items-center gap-3 mb-5">
+                <div className="p-2.5 bg-primary-100 dark:bg-white/10 rounded-xl border border-primary-200 dark:border-white/10">
+                  <Icon className="w-6 h-6 text-primary-700 dark:text-primary-300" />
                 </div>
-                <h3 className="text-xl font-semibold text-slate-200">{category.title}</h3>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-slate-50">{category.title}</h3>
               </div>
               
               <div className="flex flex-wrap gap-2 mt-auto">

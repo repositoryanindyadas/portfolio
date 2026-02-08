@@ -1,13 +1,13 @@
 import React from 'react';
 import { EDUCATION, CERTIFICATIONS } from '../constants';
 import { Section, SectionTitle, Card, staggerContainer, fadeInUp } from './ui';
-import { GraduationCap, Award } from 'lucide-react';
+import { GraduationCap, Award, Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Education = () => {
   return (
     <Section id="education">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
         {/* Degree Education */}
         <motion.div
           variants={staggerContainer}
@@ -18,22 +18,23 @@ const Education = () => {
           <SectionTitle title="Education" />
           <div className="space-y-6">
             {EDUCATION.map((edu, index) => (
-              <motion.div 
-                key={index} 
-                variants={fadeInUp}
-                className="flex gap-4 p-4 rounded-xl hover:bg-slate-800/30 transition-colors"
-              >
-                <div className="mt-1">
-                  <div className="w-10 h-10 bg-primary-500/10 rounded-lg flex items-center justify-center">
-                    <GraduationCap className="w-5 h-5 text-primary-400" />
+              <Card key={index} variants={fadeInUp} className="p-6">
+                <div className="flex gap-5">
+                  <div className="mt-1">
+                    <div className="w-14 h-14 bg-blue-50 dark:bg-blue-900/20 rounded-2xl border border-blue-100 dark:border-blue-800/30 flex items-center justify-center text-blue-600 dark:text-blue-400 shadow-sm">
+                      <GraduationCap className="w-7 h-7" />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1">{edu.degree}</h3>
+                    <p className="text-primary-800 dark:text-primary-300 font-bold">{edu.institution}</p>
+                    <div className="flex items-center gap-2 mt-2 text-sm text-slate-600 dark:text-slate-400 font-semibold">
+                      <Calendar className="w-4 h-4" />
+                      {edu.duration}
+                    </div>
                   </div>
                 </div>
-                <div>
-                  <h3 className="text-lg font-bold text-slate-200">{edu.degree}</h3>
-                  <p className="text-primary-400">{edu.institution}</p>
-                  <p className="text-sm text-slate-500 mt-1">{edu.duration}</p>
-                </div>
-              </motion.div>
+              </Card>
             ))}
           </div>
         </motion.div>
@@ -45,22 +46,20 @@ const Education = () => {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          <SectionTitle title="Certifications & Courses" />
+          <SectionTitle title="Certificates" />
           <div className="space-y-4">
             {CERTIFICATIONS.map((cert, index) => (
-              <Card key={index} variants={fadeInUp} className="py-4 px-5">
-                <div className="flex items-start justify-between">
-                  <div className="flex items-center gap-3">
-                    <Award className="w-5 h-5 text-yellow-500" />
-                    <div>
-                      <h4 className="font-semibold text-slate-200 text-sm md:text-base">{cert.name}</h4>
-                      <p className="text-xs text-slate-400">Offered by {cert.provider}</p>
-                    </div>
-                  </div>
-                  <span className="text-xs font-mono text-slate-500 bg-slate-900 px-2 py-1 rounded">
-                    {cert.year}
-                  </span>
+              <Card key={index} variants={fadeInUp} className="p-5 flex items-center gap-4 hover:bg-white dark:hover:bg-zinc-800 transition-colors">
+                <div className="w-12 h-12 rounded-full bg-amber-50 dark:bg-amber-900/10 border border-amber-100 dark:border-amber-800/30 flex items-center justify-center flex-shrink-0">
+                  <Award className="w-6 h-6 text-amber-600 dark:text-amber-500" />
                 </div>
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-bold text-slate-900 dark:text-slate-100 text-base truncate">{cert.name}</h4>
+                  <p className="text-sm text-slate-700 dark:text-slate-400 mt-0.5 font-medium">Offered by {cert.provider}</p>
+                </div>
+                <span className="text-xs font-bold font-mono text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 px-3 py-1 rounded-full">
+                  {cert.year}
+                </span>
               </Card>
             ))}
           </div>
