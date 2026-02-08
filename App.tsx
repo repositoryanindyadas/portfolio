@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Skills from './components/Skills';
 import { ExperienceHistory, Projects } from './components/Projects';
@@ -16,11 +15,10 @@ const Footer = () => (
         <a href={`mailto:${PROFILE.email}`} className="text-slate-400 hover:text-primary-400 transition-colors">
           <Mail className="w-6 h-6" />
         </a>
-        <a href={`https://linkedin.com/in/${PROFILE.linkedin}`} className="text-slate-400 hover:text-primary-400 transition-colors">
+        <a href={`https://linkedin.com/in/${PROFILE.linkedin}`} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-primary-400 transition-colors">
           <Linkedin className="w-6 h-6" />
         </a>
-        {/* Placeholder for GitHub as it wasn't explicit in resume but is standard */}
-        <a href="#" className="text-slate-400 hover:text-primary-400 transition-colors">
+        <a href="https://github.com/repositoryanindyadas" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-primary-400 transition-colors">
           <Github className="w-6 h-6" />
         </a>
       </div>
@@ -34,7 +32,6 @@ const Footer = () => (
 const App = () => {
   return (
     <div className="bg-slate-950 min-h-screen text-slate-200 selection:bg-primary-500/30">
-      <Navbar />
       <main>
         <Hero />
         <div className="space-y-12">

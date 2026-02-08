@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
         <motion.div 
@@ -78,13 +78,13 @@ const Hero = () => {
               <Mail className="w-5 h-5" />
               Contact Me
             </a>
-            <button 
+            <a 
+              href="https://drive.google.com/uc?export=download&id=1EE5fOGJt9LZR5zB1Aln3bNo9UEyQM1MQ"
               className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-6 py-3 rounded-lg font-medium transition-all hover:scale-105 active:scale-95"
-              onClick={() => window.print()}
             >
               <Download className="w-5 h-5" />
               Download Resume
-            </button>
+            </a>
           </motion.div>
 
           <motion.div 
