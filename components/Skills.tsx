@@ -1,0 +1,46 @@
+import React from 'react';
+import { SKILLS, SKILL_ICONS } from '../constants';
+import { Section, SectionTitle, Card, Badge, staggerContainer, fadeInUp } from './ui';
+import { Code } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+const Skills = () => {
+  return (
+    <Section id="skills">
+      <SectionTitle title="Technical Skills" subtitle="My technical toolkit and areas of expertise." />
+      
+      <motion.div 
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
+        {SKILLS.map((category, index) => {
+          const Icon = SKILL_ICONS[category.title] || Code;
+          
+          return (
+            <Card key={index} variants={fadeInUp} className="flex flex-col h-full">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-primary-500/10 rounded-lg">
+                  <Icon className="w-6 h-6 text-primary-400" />
+                </div>
+                <h3 className="text-xl font-semibold text-slate-200">{category.title}</h3>
+              </div>
+              
+              <div className="flex flex-wrap gap-2 mt-auto">
+                {category.skills.map((skill, idx) => (
+                  <Badge key={idx} variant="outline">
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </Card>
+          );
+        })}
+      </motion.div>
+    </Section>
+  );
+};
+
+export default Skills;
