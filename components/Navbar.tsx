@@ -59,7 +59,7 @@ const Navbar = () => {
         <div className={`
           relative rounded-2xl transition-all duration-500 ease-out overflow-hidden
           ${isActive 
-            ? 'bg-white/80 dark:bg-zinc-950/80 backdrop-blur-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.18)] dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.6)] border border-white/40 dark:border-white/10' 
+            ? 'bg-[#faf9f6]/95 dark:bg-[#1c1917]/95 backdrop-blur-xl shadow-[0_10px_25px_-5px_rgba(0,0,0,0.25),0_0_0_1px_rgba(0,0,0,0.05)] dark:shadow-[0_10px_25px_-5px_rgba(0,0,0,0.7),0_0_0_1px_rgba(255,255,255,0.1)] border border-stone-200/50 dark:border-white/10' 
             : 'bg-transparent border border-transparent shadow-none backdrop-blur-none'
           }
         `}>
@@ -75,8 +75,8 @@ const Navbar = () => {
                 onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 className="text-lg font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2 group"
               >
-                <span className={`flex items-center justify-center w-8 h-8 rounded-lg text-xl transition-all duration-300 ${isActive ? 'bg-primary-500/10' : 'bg-white/20 dark:bg-black/20 backdrop-blur-sm'}`}>🙏</span>
-                <span className={`bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-400 ${!isActive && 'dark:text-white text-slate-900'}`}>
+                <span className={`flex items-center justify-center w-8 h-8 rounded-lg text-xl transition-all duration-300 ${isActive ? 'bg-stone-500/10 dark:bg-white/10' : 'bg-white/20 dark:bg-black/20 backdrop-blur-sm'}`}>🙏</span>
+                <span className={`bg-clip-text text-transparent bg-gradient-to-r from-stone-800 to-stone-500 dark:from-white dark:to-stone-400 ${!isActive && 'dark:text-white text-slate-900'}`}>
                   নমস্কার
                 </span>
               </a>
@@ -91,7 +91,7 @@ const Navbar = () => {
                     className={`
                       relative px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300
                       ${isActive 
-                        ? 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white' 
+                        ? 'text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-white/10 hover:text-stone-900 dark:hover:text-white' 
                         : 'text-slate-700 dark:text-slate-200 hover:bg-white/10 hover:text-slate-900 dark:hover:text-white'
                       }
                       active:scale-95
@@ -108,7 +108,7 @@ const Navbar = () => {
                 className={`
                   md:hidden p-2 rounded-xl transition-colors
                   ${isActive 
-                    ? 'bg-slate-100/50 dark:bg-white/5 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-white/10' 
+                    ? 'bg-stone-100/50 dark:bg-white/5 text-stone-900 dark:text-white hover:bg-stone-200 dark:hover:bg-white/10' 
                     : 'bg-white/20 dark:bg-black/20 backdrop-blur-md text-slate-900 dark:text-white hover:bg-white/30'
                   }
                 `}
@@ -128,7 +128,7 @@ const Navbar = () => {
                   transition={{ duration: 0.2, ease: "easeInOut" }}
                   className="md:hidden overflow-hidden"
                 >
-                  <div className="flex flex-col space-y-1 pt-4 pb-2 border-t border-slate-200/50 dark:border-white/5 mt-4">
+                  <div className="flex flex-col space-y-1 pt-4 pb-2 border-t border-stone-200/50 dark:border-white/5 mt-4">
                     {NAV_LINKS.map((link) => (
                       <a
                         key={link.name}
@@ -136,9 +136,9 @@ const Navbar = () => {
                         onClick={(e) => handleNavClick(e, link.href)}
                         className="
                           block px-4 py-3 rounded-xl text-base font-semibold
-                          text-slate-600 dark:text-slate-300
-                          hover:text-slate-900 dark:hover:text-white
-                          hover:bg-slate-50 dark:hover:bg-white/5
+                          text-stone-600 dark:text-stone-300
+                          hover:text-stone-900 dark:hover:text-white
+                          hover:bg-stone-50 dark:hover:bg-white/5
                           transition-colors
                         "
                       >
