@@ -1,12 +1,12 @@
 import React from 'react';
-import { SKILLS, SKILL_ICONS } from '../constants';
+import { SKILLS, SKILL_ICONS, SECTION_IDS } from '../constants';
 import { Section, SectionTitle, Card, Badge, staggerContainer, fadeInUp } from './ui';
 import { Code } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Skills = () => {
   return (
-    <Section id="skills">
+    <Section id={SECTION_IDS.SKILLS}>
       <SectionTitle title="Technical Skills" subtitle="My technical toolkit and areas of expertise." />
       
       <motion.div 

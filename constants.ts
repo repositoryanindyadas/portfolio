@@ -1,10 +1,5 @@
 import { Profile, SkillCategory, Project, Experience, Education, Certification, Achievement } from './types';
 import { 
-  Github, 
-  Linkedin, 
-  Mail, 
-  MapPin, 
-  Phone, 
   Terminal, 
   Database, 
   Cloud, 
@@ -145,12 +140,21 @@ export const ACHIEVEMENTS: Achievement[] = [
   },
 ];
 
+// Centralized Section IDs to ensure consistency across components
+export const SECTION_IDS = {
+  SKILLS: 'skills',
+  VOLUNTARY: 'voluntary',
+  PROJECTS: 'projects',
+  EDUCATION: 'education',
+  ACHIEVEMENTS: 'achievements',
+} as const;
+
 export const NAV_LINKS = [
-  { name: 'Skills', href: '#skills' },
-  { name: 'Voluntary', href: '#experience' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Education', href: '#education' },
-  { name: 'Achievements', href: '#achievements' },
+  { name: 'Skills', href: `#${SECTION_IDS.SKILLS}` },
+  { name: 'Voluntary', href: `#${SECTION_IDS.VOLUNTARY}` },
+  { name: 'Projects', href: `#${SECTION_IDS.PROJECTS}` },
+  { name: 'Education', href: `#${SECTION_IDS.EDUCATION}` },
+  { name: 'Achievements', href: `#${SECTION_IDS.ACHIEVEMENTS}` },
 ];
 
 // Mapping icons for skill categories

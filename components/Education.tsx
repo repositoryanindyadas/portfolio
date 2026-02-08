@@ -1,12 +1,12 @@
 import React from 'react';
-import { EDUCATION, CERTIFICATIONS } from '../constants';
+import { EDUCATION, CERTIFICATIONS, SECTION_IDS } from '../constants';
 import { Section, SectionTitle, Card, staggerContainer, fadeInUp } from './ui';
 import { GraduationCap, Award, Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Education = () => {
   return (
-    <Section id="education">
+    <Section id={SECTION_IDS.EDUCATION}>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
         {/* Degree Education */}
         <motion.div

@@ -59,7 +59,7 @@ const Navbar = () => {
         <div className={`
           relative rounded-2xl transition-all duration-500 ease-out overflow-hidden
           ${isActive 
-            ? 'bg-white/80 dark:bg-zinc-950/80 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] border border-white/40 dark:border-white/10' 
+            ? 'bg-white/80 dark:bg-zinc-950/80 backdrop-blur-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.18)] dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.6)] border border-white/40 dark:border-white/10' 
             : 'bg-transparent border border-transparent shadow-none backdrop-blur-none'
           }
         `}>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowDown, ArrowUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { SECTION_IDS } from '../constants';
 
 const ScrollButton = () => {
   const [direction, setDirection] = useState<'down' | 'up'>('down');
@@ -30,7 +31,7 @@ const ScrollButton = () => {
   const handleClick = () => {
     if (direction === 'down') {
       // Find the next section to scroll to
-      const sections = ['skills', 'experience', 'projects', 'education', 'achievements'];
+      const sections = Object.values(SECTION_IDS);
       const currentScroll = window.scrollY;
       
       const nextSectionId = sections.find(id => {

@@ -1,12 +1,12 @@
 import React from 'react';
-import { ACHIEVEMENTS } from '../constants';
+import { ACHIEVEMENTS, SECTION_IDS } from '../constants';
 import { Section, SectionTitle, Card, staggerContainer, fadeInUp } from './ui';
 import { Trophy, Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Achievements = () => {
   return (
-    <Section id="achievements" className="bg-slate-50/50 dark:bg-black/20">
+    <Section id={SECTION_IDS.ACHIEVEMENTS} className="bg-slate-50/50 dark:bg-black/20">
       <SectionTitle title="Achievements" subtitle="Competitive programming and co-curricular activities." />
       
       <motion.div 
