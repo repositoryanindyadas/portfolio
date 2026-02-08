@@ -33,8 +33,8 @@ export const SKILLS: SkillCategory[] = [
     skills: ["GitLab", "Docker", "Kubernetes", "Apache", "YAML", "Jenkins", "Sonarqube"],
   },
   {
-    title: "Programming",
-    skills: ["Python", "Shell Scripting", "HTML/CSS/JS", "REST API"],
+    title: "Programming & Scripting",
+    skills: ["Python", "Shell Scripting"],
   },
   {
     title: "Databases",
@@ -44,16 +44,20 @@ export const SKILLS: SkillCategory[] = [
     title: "OS & Networking",
     skills: ["Linux (RHEL)", "File System Management", "Process Management", "CIDR", "IP Addressing", "Raspberry Pi"],
   },
+  {
+    title: "Web & Basic Development",
+    skills: ["HTML/CSS/JS", "REST API"],
+  },
 ];
 
 export const PROJECTS: Project[] = [
   {
-    title: "Microsoft 365 Administration",
+    title: "Microsoft 365 Administration – Practical Assessment",
     date: "Jan 2026",
-    description: "Hands-on learning assessment simulating a 50-user organization setup.",
+    description: "Set up and administered a Microsoft 365 tenant simulating a 50-user organization. Focused on identity provisioning, Exchange Online configuration, policy enforcement, and controlled troubleshooting.",
     bullets: [
       "Provisioned users and licenses, designed security groups and RBAC in Entra ID.",
-      "Configured Exchange Online shared mailboxes, permissions, mail flow rules, and spam/quarantine policies.",
+      "Configured Exchange Online shared mailboxes, mailbox permissions, mail flow rules, and spam/quarantine policies.",
       "Practiced Conditional Access and automated bulk administrative tasks using PowerShell.",
     ],
     techStack: ["Microsoft 365", "PowerShell", "Entra ID", "Exchange Online"],
@@ -62,22 +66,22 @@ export const PROJECTS: Project[] = [
     title: "Control Puc",
     date: "Jan 2026 - Ongoing",
     status: "In Progress",
-    description: "Industrial Project for Master's degree focusing on scalable, centralized IoT automation.",
+    description: "Ongoing Industrial Project for Master's degree final semester. A foundational prototype focusing on scalable, centralized IoT automation for small to mid-scale institutions.",
     bullets: [
-      "Designing 'Pucs' using Raspberry Pi Pico nodes to handle wireless scripts.",
-      "Developing a resilient mesh network with centralized admin dashboard.",
+      "Designing 'Pucs' using Raspberry Pi Pico-based nodes to handle wireless scripts on host machines in a resilient mesh network.",
+      "Developing a centralized admin server and dashboard with serviceability in mind.",
       "Upcoming Publication: 'Automation Using IoT: An application of Wireless Payload Delivery, Control Puc'.",
     ],
-    techStack: ["IoT", "Raspberry Pi", "Mesh Networking", "Python"],
+    techStack: ["IoT", "Raspberry Pi Pico", "Mesh Networking", "Python"],
   },
   {
     title: "PetCare Manager",
     date: "April 2025 - June 2025",
     description: "Introductory DevOps Project implemented on an open source Spring-Boot Java web app.",
     bullets: [
-      "Designed CI Phase with Jenkins Pipeline including Test Phase & Code analysis (Sonarqube).",
-      "Set up Dev/QA environments using Tomcat server.",
-      "Designed CD Phase on AWS Architecture focusing on cloud-native database deployment and app rollback features.",
+      "Designed CI Phase containing Jenkins Pipeline with Test Phase & Code analysis (Sonarqube), improving on triggering methods.",
+      "Set up Dev and QA environments using Tomcat server.",
+      "Designed CD Phase on AWS Architecture focusing on deploying a cloud-native database and adding app rollback features.",
     ],
     techStack: ["AWS", "Jenkins", "Spring Boot", "Sonarqube", "Tomcat"],
   },
@@ -154,7 +158,8 @@ export const NAV_LINKS = [
 export const SKILL_ICONS: Record<string, any> = {
   "Cloud Platforms": Cloud,
   "CI/CD & DevOps": Settings,
-  "Programming": Terminal,
+  "Programming & Scripting": Terminal,
   "Databases": Database,
   "OS & Networking": Server,
+  "Web & Basic Development": Code,
 };
