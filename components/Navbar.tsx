@@ -32,16 +32,25 @@ const Navbar = () => {
 
   const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+    // Close menu immediately
     setIsOpen(false);
     
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
     
     if (element) {
-      window.scrollTo({
-        top: element.offsetTop - 120, // Adjusted offset for the fixed navbar
-        behavior: 'smooth'
-      });
+      // Small delay to ensure state update processes and menu starts closing
+      // preventing layout thrashing on mobile
+      setTimeout(() => {
+        const navHeight = 100; // Approximate navbar height + padding
+        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = elementPosition - navHeight;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }, 50);
     }
   }, []);
 
@@ -73,7 +82,7 @@ const Navbar = () => {
               <a 
                 href="#" 
                 onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                className="text-lg font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2 group"
+                className="text-lg font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2 group cursor-pointer"
               >
                 <span className={`flex items-center justify-center w-8 h-8 rounded-lg text-xl transition-all duration-300 ${isActive ? 'bg-stone-500/10 dark:bg-white/10' : 'bg-white/20 dark:bg-black/20 backdrop-blur-sm'}`}>🙏</span>
                 <span className={`bg-clip-text text-transparent bg-gradient-to-r from-stone-800 to-stone-500 dark:from-white dark:to-stone-400 ${!isActive && 'dark:text-white text-slate-900'}`}>
@@ -89,7 +98,7 @@ const Navbar = () => {
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
                     className={`
-                      relative px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300
+                      relative px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 cursor-pointer
                       ${isActive 
                         ? 'text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-white/10 hover:text-stone-900 dark:hover:text-white' 
                         : 'text-slate-700 dark:text-slate-200 hover:bg-white/10 hover:text-slate-900 dark:hover:text-white'
@@ -106,7 +115,7 @@ const Navbar = () => {
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className={`
-                  md:hidden p-2 rounded-xl transition-colors
+                  md:hidden p-2 rounded-xl transition-colors cursor-pointer
                   ${isActive 
                     ? 'bg-stone-100/50 dark:bg-white/5 text-stone-900 dark:text-white hover:bg-stone-200 dark:hover:bg-white/10' 
                     : 'bg-white/20 dark:bg-black/20 backdrop-blur-md text-slate-900 dark:text-white hover:bg-white/30'
@@ -126,7 +135,7 @@ const Navbar = () => {
                   animate={{ height: 'auto', opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.2, ease: "easeInOut" }}
-                  className="md:hidden overflow-hidden"
+                  className="md:hidden overflow-hidden pointer-events-auto"
                 >
                   <div className="flex flex-col space-y-1 pt-4 pb-2 border-t border-stone-200/50 dark:border-white/5 mt-4">
                     {NAV_LINKS.map((link) => (
@@ -135,11 +144,11 @@ const Navbar = () => {
                         href={link.href}
                         onClick={(e) => handleNavClick(e, link.href)}
                         className="
-                          block px-4 py-3 rounded-xl text-base font-semibold
+                          block px-4 py-3 rounded-xl text-base font-semibold cursor-pointer
                           text-stone-600 dark:text-stone-300
                           hover:text-stone-900 dark:hover:text-white
                           hover:bg-stone-50 dark:hover:bg-white/5
-                          transition-colors
+                          transition-colors active:bg-stone-100 dark:active:bg-white/10
                         "
                       >
                         {link.name}
