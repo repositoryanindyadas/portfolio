@@ -82,11 +82,9 @@ const Navbar = () => {
               <a 
                 href="#" 
                 onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                className="text-lg font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2 group cursor-pointer"
+                className="text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2 group cursor-pointer hover:opacity-80 transition-opacity"
               >
-                <span className={`bg-clip-text text-transparent bg-gradient-to-r from-stone-800 to-stone-500 dark:from-white dark:to-stone-400 ${!isActive && 'dark:text-white text-slate-900'}`}>
-                  Menu
-                </span>
+                Menu
               </a>
 
               {/* Desktop Menu */}
