@@ -18,3 +18,6 @@ View your app in AI Studio: https://ai.studio/apps/drive/1joDbXrS1DTvaKQkvg548Rv
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+
+   Pipeline setup:
+   code is pushed from AI Studio to github, it gets simontaniously deployed to vercel, manual updates can be pushed to main or other branches
