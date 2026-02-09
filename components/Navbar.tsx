@@ -84,9 +84,8 @@ const Navbar = () => {
                 onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 className="text-lg font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2 group cursor-pointer"
               >
-                <span className={`flex items-center justify-center w-8 h-8 rounded-lg text-xl transition-all duration-300 ${isActive ? 'bg-stone-500/10 dark:bg-white/10' : 'bg-white/20 dark:bg-black/20 backdrop-blur-sm'}`}>🙏</span>
                 <span className={`bg-clip-text text-transparent bg-gradient-to-r from-stone-800 to-stone-500 dark:from-white dark:to-stone-400 ${!isActive && 'dark:text-white text-slate-900'}`}>
-                  নমস্কার
+                  Menu
                 </span>
               </a>
 

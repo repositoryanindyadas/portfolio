@@ -5,9 +5,11 @@ import Projects from './components/Projects';
 import VoluntaryExperience from './components/VoluntaryExperience';
 import Education from './components/Education';
 import Achievements from './components/Achievements';
+import Publications from './components/Publications';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollButton from './components/ScrollButton';
+import { ToastProvider } from './context/ToastContext';
 
 const AppContent = () => {
   return (
@@ -34,6 +36,7 @@ const AppContent = () => {
           <Skills />
           <VoluntaryExperience />
           <Projects />
+          <Publications />
           <Education />
           <Achievements />
         </div>
@@ -46,7 +49,9 @@ const AppContent = () => {
 
 const App = () => {
   return (
-    <AppContent />
+    <ToastProvider>
+      <AppContent />
+    </ToastProvider>
   );
 };
 

@@ -3,10 +3,13 @@ import { ACHIEVEMENTS, SECTION_IDS } from '../constants';
 import { Section, SectionTitle, Card, staggerContainer, fadeInUp } from './ui';
 import { Trophy, Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useCardClick, interactiveClass } from '../hooks/useCardClick';
 
 const Achievements = () => {
+  const handleCardClick = useCardClick();
+
   return (
-    <Section id={SECTION_IDS.ACHIEVEMENTS} className="bg-slate-50/50 dark:bg-black/20">
+    <Section id={SECTION_IDS.ACHIEVEMENTS}>
       <SectionTitle title="Achievements" subtitle="Competitive programming and co-curricular activities." />
       
       <motion.div 
@@ -17,7 +20,20 @@ const Achievements = () => {
         className="grid grid-cols-1 md:grid-cols-2 gap-6"
       >
         {ACHIEVEMENTS.map((item, index) => (
-          <Card key={index} variants={fadeInUp} className="border-t-[4px] border-t-primary-500">
+          <Card 
+            key={index} 
+            variants={fadeInUp} 
+            className={`border-t-[4px] border-t-primary-500 ${interactiveClass}`}
+            onClick={() => handleCardClick()}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleCardClick();
+              }
+            }}
+          >
             <div className="flex justify-between items-start mb-4">
               <div>
                 <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">{item.title}</h3>

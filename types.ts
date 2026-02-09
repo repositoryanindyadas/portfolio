@@ -1,3 +1,4 @@
+
 export interface SocialLink {
   platform: string;
   url: string;
@@ -37,6 +38,15 @@ export interface Certification {
   name: string;
   year: string;
   provider: string;
+}
+
+export interface Publication {
+  title: string;
+  date: string;
+  description: string;
+  link?: string;
+  status: 'Published' | 'Upcoming' | 'In Review';
+  type: 'Research Paper' | 'Dissertation' | 'Patent' | 'Article';
 }
 
 export interface Achievement {

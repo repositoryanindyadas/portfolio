@@ -1,4 +1,4 @@
-import { Profile, SkillCategory, Project, Experience, Education, Certification, Achievement } from './types';
+import { Profile, SkillCategory, Project, Experience, Education, Certification, Achievement, Publication } from './types';
 import { 
   Terminal, 
   Database, 
@@ -15,7 +15,7 @@ export const PROFILE: Profile = {
   email: "contactanindyadas@gmail.com",
   phone: "+91 7047933601",
   linkedin: "contactanindyadas",
-  summary: "Results-driven Computer Science Engineering graduate specializing in Cloud Infrastructure and Microsoft 365 Administration. Comfortable supporting users, handling basic administration tasks, and working in structured, team-based environments. Keen to be proactive in driving collective success.",
+  summary: "🙏 নমস্কার, আমি অনিন্দ্য দাস। I'm a Results-driven Computer Science Engineering graduate specializing in Cloud Infrastructure and Microsoft 365 Administration. Comfortable supporting users, handling basic administration tasks, and working in structured, team-based environments. Keen to be proactive in driving collective success.",
 };
 
 export const SKILLS: SkillCategory[] = [
@@ -82,6 +82,16 @@ export const PROJECTS: Project[] = [
   },
 ];
 
+export const PUBLICATIONS: Publication[] = [
+  {
+    title: "Automation Using IoT: An application of Wireless Payload Delivery, Control Puc",
+    date: "2026",
+    type: "Research Paper",
+    description: "Upcoming research paper focusing on scalable, centralized IoT automation for small to mid-scale institutions, featuring Raspberry Pi Pico-based nodes in a resilient mesh network.",
+    status: "Upcoming"
+  }
+];
+
 export const EXPERIENCE: Experience[] = [
   {
     role: "Remote Contributor",
@@ -105,7 +115,9 @@ export const EDUCATION: Education[] = [
   },
 ];
 
-export const CERTIFICATIONS: Certification[] = [
+export const CERTIFICATIONS_FIRST_PARTY: Certification[] = [];
+
+export const CERTIFICATIONS_THIRD_PARTY: Certification[] = [
   {
     name: "MERN Ecommerce Course (+ Fintech Digital Wallet)",
     provider: "Udemy",
@@ -145,7 +157,9 @@ export const SECTION_IDS = {
   SKILLS: 'skills',
   VOLUNTARY: 'voluntary',
   PROJECTS: 'projects',
+  PUBLICATIONS: 'publications',
   EDUCATION: 'education',
+  CERTIFICATES: 'certificates',
   ACHIEVEMENTS: 'achievements',
 } as const;
 
@@ -153,7 +167,9 @@ export const NAV_LINKS = [
   { name: 'Skills', href: `#${SECTION_IDS.SKILLS}` },
   { name: 'Voluntary', href: `#${SECTION_IDS.VOLUNTARY}` },
   { name: 'Projects', href: `#${SECTION_IDS.PROJECTS}` },
-  { name: 'Education', href: `#${SECTION_IDS.EDUCATION}` },
+  { name: 'Publications', href: `#${SECTION_IDS.PUBLICATIONS}` },
+  { name: 'Academics', href: `#${SECTION_IDS.EDUCATION}` },
+  { name: 'Certificates', href: `#${SECTION_IDS.CERTIFICATES}` },
   { name: 'Achievements', href: `#${SECTION_IDS.ACHIEVEMENTS}` },
 ];
 

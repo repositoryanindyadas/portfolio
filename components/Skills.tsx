@@ -3,8 +3,11 @@ import { SKILLS, SKILL_ICONS, SECTION_IDS } from '../constants';
 import { Section, SectionTitle, Card, Badge, staggerContainer, fadeInUp } from './ui';
 import { Code } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useCardClick, interactiveClass } from '../hooks/useCardClick';
 
 const Skills = () => {
+  const handleCardClick = useCardClick();
+
   return (
     <Section id={SECTION_IDS.SKILLS}>
       <SectionTitle title="Technical Skills" subtitle="My technical toolkit and areas of expertise." />
@@ -20,7 +23,20 @@ const Skills = () => {
           const Icon = SKILL_ICONS[category.title] || Code;
           
           return (
-            <Card key={index} variants={fadeInUp} className="flex flex-col h-full hover:border-primary-500/30 transition-colors">
+            <Card 
+              key={index} 
+              variants={fadeInUp} 
+              className={`flex flex-col h-full hover:border-primary-500/30 transition-colors ${interactiveClass}`}
+              onClick={() => handleCardClick()}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleCardClick();
+                }
+              }}
+            >
               <div className="flex items-center gap-3 mb-5">
                 <div className="p-2.5 bg-primary-100 dark:bg-white/10 rounded-xl border border-primary-200 dark:border-white/10">
                   <Icon className="w-6 h-6 text-primary-700 dark:text-primary-300" />

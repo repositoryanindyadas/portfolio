@@ -57,14 +57,14 @@ const titleAnimationProps = {
   initial: { opacity: 0, y: 10 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-10%" },
-  transition: { duration: 0.5, ease: "easeOut" }
+  transition: { duration: 0.5, ease: "easeOut" as const }
 };
 
 const subtitleAnimationProps = {
   initial: { opacity: 0, y: 10 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-10%" },
-  transition: { delay: 0.1, duration: 0.5, ease: "easeOut" }
+  transition: { delay: 0.1, duration: 0.5, ease: "easeOut" as const }
 };
 
 // --- Components ---
@@ -130,13 +130,13 @@ export const Badge = React.memo<BadgeProps>(({ children, className = "", variant
 
 Badge.displayName = 'Badge';
 
-export interface CardProps {
+export interface CardProps extends HTMLMotionProps<"div"> {
   children: React.ReactNode;
   className?: string;
   variants?: Variants;
 }
 
-export const Card = React.memo<CardProps>(({ children, className = "", variants }) => {
+export const Card = React.memo<CardProps>(({ children, className = "", variants, ...props }) => {
   const defaultVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 }
@@ -154,6 +154,7 @@ export const Card = React.memo<CardProps>(({ children, className = "", variants 
         backfaceVisibility: "hidden" 
       }}
       className={`${STYLES.card} ${className}`}
+      {...props}
     >
       {/* Premium Gloss Reflection */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-transparent to-transparent dark:from-white/5 dark:via-transparent dark:to-transparent pointer-events-none opacity-40" />
