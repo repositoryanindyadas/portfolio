@@ -86,7 +86,8 @@ export interface SectionTitleProps {
   subtitle?: string;
 }
 
-export const SectionTitle = React.memo<SectionTitleProps>(({ title, subtitle }) => (
+// Fix: Correctly type the memoized component props by moving the type to the argument
+export const SectionTitle = React.memo(({ title, subtitle }: SectionTitleProps) => (
   <div className="mb-16">
     <motion.div 
       {...titleAnimationProps}
@@ -118,7 +119,8 @@ export interface BadgeProps {
   variant?: 'default' | 'outline';
 }
 
-export const Badge = React.memo<BadgeProps>(({ children, className = "", variant = 'default' }) => {
+// Fix: Correctly type the memoized component props by moving the type to the argument
+export const Badge = React.memo(({ children, className = "", variant = 'default' }: BadgeProps) => {
   const variantStyles = STYLES.badge.variants[variant] || STYLES.badge.variants.default;
   
   return (
@@ -136,7 +138,9 @@ export interface CardProps extends HTMLMotionProps<"div"> {
   variants?: Variants;
 }
 
-export const Card = React.memo<CardProps>(({ children, className = "", variants, ...props }) => {
+// Fix: Correctly type the memoized component props by moving the type to the argument.
+// This ensures that inherited props from HTMLMotionProps (like onClick, role, tabIndex) are recognized.
+export const Card = React.memo(({ children, className = "", variants, ...props }: CardProps) => {
   const defaultVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 }

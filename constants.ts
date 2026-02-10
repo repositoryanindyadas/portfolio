@@ -15,7 +15,7 @@ export const PROFILE: Profile = {
   email: "contactanindyadas@gmail.com",
   phone: "+91 7047933601",
   linkedin: "contactanindyadas",
-  summary: "🙏 নমস্কার, আমি অনিন্দ্য দাস। I'm a Results-driven Computer Science Engineering graduate specializing in Cloud Infrastructure and Microsoft 365 Administration. Comfortable supporting users, handling basic administration tasks, and working in structured, team-based environments. Keen to be proactive in driving collective success.",
+  summary: " নমস্কার, I'm a Results-driven Computer Science Engineering graduate specializing in Cloud Infrastructure and Microsoft 365 Administration. Comfortable supporting users, handling basic administration tasks, and working in structured, team-based environments. Keen to be proactive in driving collective success.",
 };
 
 export const SKILLS: SkillCategory[] = [
